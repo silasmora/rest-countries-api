@@ -6,6 +6,7 @@ import CountryCard from "./components/CountryCard"
 function App() {
 
   const [countries, setCountries] = useState([])
+  const [theme, setTheme] = useState('light')
   
   useEffect(() => {
     fetch('/data.json')
@@ -13,11 +14,26 @@ function App() {
       .then(data => setCountries(data))
   })
 
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  }, [theme])
+  
+
+  function handleThemeToggle() {
+    setTheme(theme === 'dark' ? 'light' : 'dark')
+  }
+
   return (
     <div className="max-w-7xl mx-auto">  
-      <Header />
+      <Header toggle={handleThemeToggle}/>
       <div className="shadow-md">
+
         <SearchFilter />
+
         <div className="px-12 md:px-12">
         <CountryCard countries={countries}/>
         </div>
