@@ -7,6 +7,7 @@ function App() {
 
   const [countries, setCountries] = useState([])
   const [theme, setTheme] = useState('light')
+  const [selectedRegion, setSelectedRegion] = useState(null)
   
   useEffect(() => {
     fetch('/data.json')
@@ -27,15 +28,33 @@ function App() {
     setTheme(theme === 'dark' ? 'light' : 'dark')
   }
 
+  const [search, setSearch] = useState('')
+
+  function handleSearch(e) {
+    setSearch(e.target.value)
+  }
+
+  const filteredCountry = filterCountriesByRegion(selectedRegion).filter(country => {
+    return country.name.toLowerCase().includes(search.toLowerCase());
+  });
+  
+  function filterCountriesByRegion(region) {
+    if (region === '') {
+      return countries
+    } else {
+      return countries.filter(country => country.region === region)
+    }
+  }
+
   return (
     <div className="max-w-7xl mx-auto">  
       <Header toggle={handleThemeToggle}/>
       <div className="shadow-md">
 
-        <SearchFilter />
+        <SearchFilter search={search} handleSearch={handleSearch} selectedRegion={selectedRegion} setSelectedRegion={setSelectedRegion}/>
 
         <div className="px-12 md:px-12">
-        <CountryCard countries={countries}/>
+        <CountryCard countries={countries} filteredCountry={filteredCountry} search={search}/>
         </div>
       </div>
     </div>

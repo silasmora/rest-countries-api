@@ -2,7 +2,8 @@ import React from 'react'
 import DropDown from './DropDown'
 
 
-export default function SearchFilter() {
+export default function SearchFilter({ search, handleSearch, selectedRegion, setSelectedRegion }) {
+
   return (
     <div className='mx-6 py-8 md:flex md:justify-between items-center md:py-12 md:mx-12'>
       <div className='relative text-gray-400 pointer-events-auto md:w-[40%] '>
@@ -18,12 +19,13 @@ export default function SearchFilter() {
         <input
           type="text" 
           placeholder='Search for a country...'
-          
+          value={search}
+          onChange={handleSearch}
           className='text-gray-900 rounded-md shadow-sm ring-1 ring-inset ring-gray-300 py-4 px-16 w-full bg-white dark:bg-darkElements dark:ring-slate-900'
           />
       </div>
  
-      <DropDown />
+      <DropDown selectedRegion={selectedRegion} setSelectedRegion={setSelectedRegion}/>
     </div>
   )
 }
