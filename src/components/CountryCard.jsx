@@ -12,7 +12,7 @@ export default function CountryCard({ filteredAndSearchCountries }) {
           </div>
           <div className='p-6 border-t border-gray-100'>
 
-            <Link to={`/countries/${country.name}`}>
+            <Link to={`/${country.name}`}>
               <h1 className='pb-4 text-xl font-bolder'>{country.name}</h1>
             </Link>
 
