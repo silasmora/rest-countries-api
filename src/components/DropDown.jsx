@@ -6,19 +6,15 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function DropDown({selectedRegion, setSelectedRegion}) {
+export default function DropDown({selectedRegion, handleRegionChange}) {
   
-  const regions = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania']
-  
-  function handleRegionChange(region) {
-    setSelectedRegion(region)
-  }
+  const regions = ['Filter by Region', 'Africa', 'Americas', 'Asia', 'Europe', 'Oceania']
 
   return (
     <Menu as='div' className='my-8 w-1/2 md:w-[20%] md:my-0'>
       <div>
-        <Menu.Button className="w-full inline-flex justify-center gap-x-1.5 rounded-md py-4 font-bold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 bg-white dark:bg-darkElements dark:ring-slate-900 dark:text-darkModeText">
-          {selectedRegion ? selectedRegion : 'Filter by Region'}
+        <Menu.Button className="w-full inline-flex justify-center gap-x-1.5 rounded-md py-4 font-bold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 bg-white hover:bg-gray-100 dark:bg-darkElements dark:ring-slate-900 dark:text-darkModeText">
+          {selectedRegion || 'Filter by Region'}
           <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
         </Menu.Button>
       </div>
@@ -39,7 +35,7 @@ export default function DropDown({selectedRegion, setSelectedRegion}) {
               <a
                 onClick={() => handleRegionChange(region)}
                 className={classNames(
-                active ? 'bg-gray-100 text-gray-900 dark:bg-darkBG dark:text-darkModeText' : 'text-gray-700 dark:text-darkModeText',
+                active ? 'bg-gray-100 text-gray-900 cursor-pointer dark:bg-darkBG dark:text-darkModeText' : 'text-gray-700 dark:text-darkModeText',
                 'block px-4 py-2 text-sm'
                 )}
               >

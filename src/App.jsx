@@ -2,18 +2,22 @@ import { useEffect, useState } from "react"
 import Header from "./components/Header"
 import SearchFilter from "./components/SearchFilter"
 import CountryCard from "./components/CountryCard"
+import { Route, Routes, useLocation } from "react-router-dom"
+import SingleCountryCard from "./components/SingleCountryCard"
 
 function App() {
 
-  const [countries, setCountries] = useState([])
   const [theme, setTheme] = useState('light')
+  const [countries, setCountries] = useState([])
+  const [search, setSearch] = useState('')
   const [selectedRegion, setSelectedRegion] = useState(null)
+  useState([])
   
   useEffect(() => {
     fetch('/data.json')
       .then(res => res.json())
       .then(data => setCountries(data))
-  })
+  }, [])
 
   useEffect(() => {
     if (theme === 'dark') {
@@ -23,40 +27,53 @@ function App() {
     }
   }, [theme])
   
-
   function handleThemeToggle() {
     setTheme(theme === 'dark' ? 'light' : 'dark')
   }
-
-  const [search, setSearch] = useState('')
-
-  function handleSearch(e) {
-    setSearch(e.target.value)
-  }
-
-  const filteredCountry = filterCountriesByRegion(selectedRegion).filter(country => {
-    return country.name.toLowerCase().includes(search.toLowerCase());
-  });
   
-  function filterCountriesByRegion(region) {
-    if (region === '') {
-      return countries
-    } else {
-      return countries.filter(country => country.region === region)
-    }
+  function handleRegionChange(region) {
+    setSelectedRegion(region);
   }
+
+  const filteredAndSearchCountries = countries.filter(country => {
+    return (
+      (selectedRegion === null || selectedRegion === 'Filter by Region' || country.region === selectedRegion) && 
+      country.name.toLowerCase().includes(search.toLowerCase())
+    )
+  })
+
+  const location = useLocation()
+  const { pathname } = location
+  const showSearchFilter = !pathname.startsWith('/countries/')
 
   return (
     <div className="max-w-7xl mx-auto">  
       <Header toggle={handleThemeToggle}/>
-      <div className="shadow-md">
+      <div className="lg:shadow-md">
 
-        <SearchFilter search={search} handleSearch={handleSearch} selectedRegion={selectedRegion} setSelectedRegion={setSelectedRegion}/>
+        {showSearchFilter && <SearchFilter 
+          search={search} 
+          setSearch={setSearch} 
+          selectedRegion={selectedRegion} 
+          setSelectedRegion={setSelectedRegion} 
+          handleRegionChange={handleRegionChange}
+          />}
 
-        <div className="px-12 md:px-12">
-        <CountryCard countries={countries} filteredCountry={filteredCountry} search={search}/>
+        <div className="px-12">
+          <Routes>
+
+            <Route exact path='/countries' 
+              element={<CountryCard filteredAndSearchCountries={filteredAndSearchCountries}/> }>
+            </Route>
+
+            <Route path='/countries/:name' element={<SingleCountryCard countries={countries}/>} />
+            
+            
+          </Routes>
         </div>
+
       </div>
+      
     </div>
   )
 }

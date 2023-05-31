@@ -11,7 +11,8 @@ export default {
         nunito: ['Nunito Sans', 'sans-serif'],
       },
       fontWeight: {
-        light: 300,
+        light: 200,
+        normal: 300,
         bold: 600,
         bolder: 800
       },
@@ -19,6 +20,7 @@ export default {
         darkBG: 'hsl(207, 26%, 17%)',
         darkElements: 'hsl(209, 23%, 22%)',
         darkModeText: 'hsl(0, 0%, 100%)',
+        lightBG: 'hsl(0, 0%, 98%)',
       }
     },
   },
