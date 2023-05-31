@@ -12,7 +12,7 @@ export default function CountryCard({ filteredAndSearchCountries }) {
               <img className='h-full w-full cursor-pointer rounded-t-md' src={country.flags.png} alt="country flag" />
             </Link>
           </div>
-          <div className='p-6 border-t border-gray-100'>
+          <div className='p-6 border-t border-gray-100 dark:border-darkElements'>
 
             <Link to={`/${country.name}`}>
               <h1 className='pb-4 text-xl font-bolder hover:text-red-600'>{country.name}</h1>
