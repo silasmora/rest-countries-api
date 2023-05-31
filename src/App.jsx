@@ -44,8 +44,7 @@ function App() {
 
   const location = useLocation()
   const { pathname } = location
-  const showSearchFilter = !pathname.startsWith('/countries/')
-
+  const showSearchFilter = pathname.endsWith('/')
   return (
     <div className="max-w-7xl mx-auto">  
       <Header toggle={handleThemeToggle}/>
