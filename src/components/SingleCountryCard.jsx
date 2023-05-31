@@ -22,7 +22,7 @@ export default function SingleCountryCard({ countries }) {
   
   return (
     <div className='py-10'>
-      <button onClick={() => navigate('/countries')} className='flex items-center py-2 px-6 ring-1 ring-inset ring-gray-300 rounded-md shadow-lg cursor-pointer hover:bg-gray-200 dark:bg-darkElements dark:ring-slate-900 dark:text-darkModeText dark:hover:bg-darkElements/50'>
+      <button onClick={() => navigate('/')} className='flex items-center py-2 px-6 ring-1 ring-inset ring-gray-300 rounded-md shadow-lg cursor-pointer hover:bg-gray-200 dark:bg-darkElements dark:ring-slate-900 dark:text-darkModeText dark:hover:bg-darkElements/50'>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 mr-2">
           <path fillRule="evenodd" d="M17 10a.75.75 0 01-.75.75H5.612l4.158 3.96a.75.75 0 11-1.04 1.08l-5.5-5.25a.75.75 0 010-1.08l5.5-5.25a.75.75 0 111.04 1.08L5.612 9.25H16.25A.75.75 0 0117 10z" clipRule="evenodd" />
         </svg>

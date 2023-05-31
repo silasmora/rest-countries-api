@@ -14,7 +14,7 @@ function App() {
   useState([])
   
   useEffect(() => {
-    fetch('/data.json')
+    fetch('./data.json')
       .then(res => res.json())
       .then(data => setCountries(data))
   }, [])
@@ -62,11 +62,11 @@ function App() {
         <div className="px-12">
           <Routes>
 
-            <Route exact path='/countries' 
+            <Route exact path='/' 
               element={<CountryCard filteredAndSearchCountries={filteredAndSearchCountries}/> }>
             </Route>
 
-            <Route path='/countries/:name' element={<SingleCountryCard countries={countries}/>} />
+            <Route path='/:name' element={<SingleCountryCard countries={countries}/>} />
             
             
           </Routes>
