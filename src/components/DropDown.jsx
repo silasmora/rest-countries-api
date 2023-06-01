@@ -13,7 +13,7 @@ export default function DropDown({selectedRegion, handleRegionChange}) {
   return (
     <Menu as='div' className='my-8 w-1/2 md:w-[20%] md:my-0'>
       <div>
-        <Menu.Button className="w-full inline-flex justify-center gap-x-1.5 rounded-md py-4 font-bold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 bg-white hover:bg-gray-100 dark:bg-darkElements dark:ring-slate-900 dark:text-darkModeText">
+        <Menu.Button className="w-full inline-flex justify-center gap-x-1.5 rounded-md py-4 font-bold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 bg-white hover:bg-gray-100 dark:bg-darkElements dark:ring-slate-900 dark:text-darkModeText dark:hover:bg-darkBG">
           {selectedRegion || 'Filter by Region'}
           <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
         </Menu.Button>
